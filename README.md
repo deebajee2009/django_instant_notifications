@@ -1,8 +1,7 @@
 # django_instant_notifications
 
 cd myproject/compose
-docker compose -f docker-compose.yml -f ../docker/dev/docker-compose.override.yml up -d --build
-
+docker compose --project-directory . -f compose/docker-compose.yml -f docker/dev/docker-compose.override.yml up -d --build
 
 # .env example
 POSTGRES_DB=notif_db_dev
