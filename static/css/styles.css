@@ -1,17 +1,25 @@
 @font-face {
-    font-family: 'IRANYekan';
-    src: url('../fonts/IRANYekanX-Regular.woff2') format('woff2'), /* Adjust file names */
-         url('../fonts/IRANYekanX-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'IRANYekan';
+  src: url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.eot');
+  src: url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.eot?#iefix') format('embedded-opentype'),
+  url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.woff2') format('woff2'),
+  url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.woff') format('woff'),
+  url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'IRANYekan';
-    src: url('../fonts/IRANYekanX-Bold.woff2') format('woff2'),
-         url('../fonts/IRANYekanX-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
+  font-family: 'IRANYekan';
+  src: url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.eot');
+  src: url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.eot?#iefix') format('embedded-opentype'),
+  url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.woff2') format('woff2'),
+  url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.woff') format('woff'),
+  url('https://cdn.fontcdn.ir/Font/Persian/IranYekan/IranYekan.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {
