@@ -1,13 +1,16 @@
 import json
 import jdatetime
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.core.cache import cache
-from .models import Message
-from .tasks import send_notification_task, get_updated_unread_count
+
+from apps.notifications.models import Message
+from apps.notifications.tasks import send_notification_task
+from apps.notifications.services import get_updated_unread_count
 
 
 def index_view(request):

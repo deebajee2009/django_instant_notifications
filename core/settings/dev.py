@@ -1,14 +1,14 @@
 # settings/dev.py
-
 from .base import *
 
+
+# Shared application settings
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG')
 
-# Use a simple, insecure key for local development
-SECRET_KEY = 'django-insecure-4k!q!&+__vl790!1t45+ziy8nd6$6@ra1b16s9z-cxlh6^@=u!'
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',')
 
 # Database for local development (PostgreSQL)
 # Ensure you have a local PostgreSQL server running with these credentials

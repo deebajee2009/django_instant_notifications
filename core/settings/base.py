@@ -11,8 +11,6 @@ load_dotenv()
 # The settings directory is one level deeper, so we need parent.parent.parent
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Shared application settings
-SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Application definition
 INSTALLED_APPS = [
@@ -94,7 +92,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # --- CELERY & REDIS CONFIGURATION ---
-REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+REDIS_PORT = os.environ.get("REDIS_PORT", "6379")
+REDIS_DB = os.environ.get("REDIS_DB", "0")  # optional, default db=0
+
+REDIS_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
 
 CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
