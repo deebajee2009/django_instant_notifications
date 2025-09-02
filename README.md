@@ -12,7 +12,7 @@ POSTGRES_PASSWORD=devpassword
 DJANGO_SETTINGS_MODULE=core.settings.dev
 DJANGO_DEBUG=True
 DJANGO_SECRET_KEY=-6-Kq(t@c@da$ro)p7&2v0-!u#k)s(_p^k!t(f^7q2!8#a#i-g
-DJANGO_ALLOWED_HOSTS=localhost,web
+DJANGO_ALLOWED_HOSTS=localhost,web,*
 
 POSTGRES_DB=notif_db_dev
 POSTGRES_USER=devuser

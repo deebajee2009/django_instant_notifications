@@ -1,5 +1,6 @@
 services:
   postgres:
+    container_name: postgres
     image: postgres:16-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -10,6 +11,7 @@ services:
     restart: unless-stopped
 
   redis:
+    container_name: redis
     image: redis:alpine
     restart: unless-stopped
 
