@@ -1,11 +1,15 @@
 import os
+
 from celery import Celery
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings.dev')
 
 # Create the Celery app instance.
-app = Celery('your_project')
+app = Celery('core')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

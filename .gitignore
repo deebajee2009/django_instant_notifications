@@ -1,1 +1,22 @@
+# Environment variables
+.env.*
 venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+*.log
+db.sqlite3
+staticfiles/  # <-- Add the STATIC_ROOT directory here
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# IDE files
+.idea/
+.vscode/

@@ -1,0 +1,17 @@
+{% load jalali_tags %}
+<div hx-get="{% url 'app.notifications:message_detail' message_id=message.id %}"
+     hx-target="body"
+     hx-push-url="true"
+     class="message-row {% if message.is_read %}read{% else %}unread{% endif %} cursor-pointer"
+     style="cursor: pointer;">
+
+    <div class="message-title">
+        {{ message.title }}
+    </div>
+    <div class="message-sender px-3">
+        {{ message.sender }}
+    </div>
+    <div class="message-meta">
+        {{ message.created_at|to_jalali }}
+    </div>
+</div>

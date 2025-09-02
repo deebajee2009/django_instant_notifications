@@ -1,0 +1,8 @@
+{% load jalali_tags %}
+{% if messages %}
+    {% for message in messages %}
+        {% include 'partials/message_row.html' %}
+    {% endfor %}
+{% else %}
+    <p class="text-center text-muted p-4">هیچ پیامی برای نمایش وجود ندارد.</p>
+{% endif %}
