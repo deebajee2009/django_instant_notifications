@@ -3,7 +3,7 @@ services:
     build:
       context: ./
       dockerfile: ./docker/dev/Dockerfile
-    command: /bin/sh -c "/app/scripts/wait-for-postgres.sh && python manage.py migrate && daphne -b 0.0.0.0 -p 8000 core.asgi:application"
+    command: /bin/sh -c "/app/scripts/wait-for-postgres.sh postgres && python manage.py migrate && daphne -b 0.0.0.0 -p 8000 core.asgi:application"
     volumes:
       - ./:/app
     ports:
@@ -19,7 +19,7 @@ services:
     build:
       context: ./
       dockerfile: ./docker/dev/Dockerfile
-    command: /bin/sh -c "/app/scripts/wait-for-postgres.sh && celery -A notif_project worker -l info"
+    command: /bin/sh -c "/app/scripts/wait-for-postgres.sh postgre && celery -A notif_project worker -l info"
     volumes:
       - ./:/app
     env_file:
