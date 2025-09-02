@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.10-slim-buster
+FROM python:3.11-slim-bullseye
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -22,3 +22,5 @@ RUN pip install --upgrade pip && pip install -r /requirements/dev.txt
 
 # Copy project code
 COPY . /app/
+
+RUN chmod +x /app/scripts/wait-for-postgres.sh
