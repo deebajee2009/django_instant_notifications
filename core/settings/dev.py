@@ -14,11 +14,11 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',')
 # Ensure you have a local PostgreSQL server running with these credentials
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_project_db',
-        'USER': 'my_project_user',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE'  : 'django.db.backends.postgresql',
+        'NAME'    : os.environ.get('POSTGRES_DB'),
+        'USER'    : os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST'    : os.environ.get('POSTGRES_HOST'),
+        'PORT'    : os.environ.get('POSTGRES_PORT'),
     }
 }

@@ -25,11 +25,11 @@ SECURE_BROWSER_XSS_FILTER = True
 # e.g., postgres://USER:PASSWORD@HOST:PORT/NAME
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_project_db',
-        'USER': 'my_project_user',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE'  : 'django.db.backends.postgresql',
+        'NAME'    : os.environ.get('POSTGRES_DB'),
+        'USER'    : os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST'    : os.environ.get('POSTGRES_HOST'),
+        'PORT'    : os.environ.get('POSTGRES_PORT'),
     }
 }
