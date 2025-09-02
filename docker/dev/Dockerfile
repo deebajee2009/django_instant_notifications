@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Install dependencies
-COPY ./requirements /app/requirements
-RUN pip install --upgrade pip && pip install -r /requirements/dev.txt
+COPY ./requirements ./requirements
+RUN pip install --upgrade pip && pip install -r ./requirements/dev.txt
 
 # Copy project code
 COPY . /app/
