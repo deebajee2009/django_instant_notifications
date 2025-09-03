@@ -95,10 +95,10 @@ def send_message_view(request):
         if not all([receivers, title, text]):
             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
 
-        for receiver_username in receivers:
+        for receiver in receivers:
             send_notification_task.delay(
-                receiver_username=receiver_username,
-                sender_name=sender,
+                receiver=receiver,
+                sender=sender,
                 title=title,
                 text=text
             )
