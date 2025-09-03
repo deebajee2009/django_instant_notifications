@@ -1,21 +1,19 @@
-let webSocket = null;
-
 document.addEventListener('DOMContentLoaded', function () {
-    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+    const loginModalElement = document.getElementById('loginModal');
+    const loginModal = new bootstrap.Modal(loginModalElement, {
         keyboard: false,
         backdrop: 'static'
     });
 
     const loginForm = document.getElementById('loginForm');
-
-    // Check if username exists in localStorage
     const username = localStorage.getItem('username');
 
-    if (!username) {
-        loginModal.show();
+    if (username) {
+        // If username exists, load the dashboard immediately
+        loadDashboard(username);
     } else {
-        // If user is already "logged in", initialize the dashboard
-        initializeDashboard(username);
+        // Otherwise, show the login modal
+        loginModal.show();
     }
 
     // Handle login form submission
@@ -27,65 +25,58 @@ document.addEventListener('DOMContentLoaded', function () {
         if (submittedUsername) {
             localStorage.setItem('username', submittedUsername);
             loginModal.hide();
-            // Load dashboard content via HTMX after login
-            htmx.ajax('GET', `/dashboard/${submittedUsername}/`, {target: 'body'});
-            // We need to re-initialize after the content is loaded
-            // Using a delay to ensure the DOM is updated. A better way would be using htmx events.
-            setTimeout(() => initializeDashboard(submittedUsername), 500);
+            loadDashboard(submittedUsername);
         }
     });
 });
 
-function initializeDashboard(username) {
-    console.log(`Initializing dashboard for ${username}`);
-
-    // Set username in navbar display
-    const usernameDisplay = document.getElementById('username-display');
-    if (usernameDisplay) {
-        usernameDisplay.textContent = username;
+/**
+ * Triggers HTMX to fetch and load the dashboard content.
+ * @param {string} username - The user's username.
+ */
+function loadDashboard(username) {
+    const dashboardWrapper = document.getElementById('dashboard-wrapper');
+    if (dashboardWrapper) {
+        // Set HTMX attributes for the GET request
+        dashboardWrapper.setAttribute('hx-get', `/dashboard/${username}/`);
+        dashboardWrapper.setAttribute('hx-trigger', 'load'); // Trigger immediately
+        dashboardWrapper.setAttribute('hx-swap', 'innerHTML');
+        // Process the element to make HTMX aware of the new attributes
+        htmx.process(dashboardWrapper);
     }
-
-    // Dynamically set HTMX attributes that depend on the username
-    updateHtmxAttributes(username);
-
-    // Connect to WebSocket
-    connectWebSocket(username);
 }
 
-function updateHtmxAttributes(username) {
-    // Set post URL for date filter form
+/**
+ * Initializes components that exist only after the dashboard is loaded.
+ * This function is called by the htmx:afterSwap event listener.
+ * @param {string} username - The user's username.
+ */
+function initializeDashboardComponents(username) {
+    console.log(`Initializing components for ${username}`);
+
+    // Initialize Jalali date pickers on any input with data-jdp attribute
+    jalaliDatepicker.startWatch();
+
+    // Dynamically update HTMX attributes that depend on the username
+    // Note: The websocket-handler is already processed by HTMX upon swap.
     const dateFilterForm = document.getElementById('date-filter-form');
     if (dateFilterForm) {
         dateFilterForm.setAttribute('hx-post', `/dashboard/${username}/`);
     }
 
-    // Update back button on message detail page if it exists
     const backButton = document.querySelector(`[hx-get^="/dashboard/"]`);
     if(backButton) {
         backButton.setAttribute('hx-get', `/dashboard/${username}/`);
     }
-
-    // Update WebSocket connection element
-    const wsConnectElement = document.getElementById('websocket-handler');
-    if(wsConnectElement) {
-        wsConnectElement.setAttribute('ws-connect', `/ws/notifications/${username}/`);
-        htmx.process(wsConnectElement); // Tell htmx to process the new attribute
-    }
 }
 
-function connectWebSocket(username) {
-    // This example uses htmx's built-in websocket extension,
-    // which is simpler. Ensure your `<body>` or a persistent parent element
-    // has `hx-ext="ws"` and `ws-connect="/ws/notifications/{username}/"`.
-    // The `updateHtmxAttributes` function sets this dynamically.
-    console.log("HTMX will handle the WebSocket connection.");
-}
-
-
-// Listen for htmx:afterSwap event to re-initialize after page navigation
+// Listen for HTMX's afterSwap event. This is the correct way to initialize
+// JS on content that has been loaded dynamically.
 document.body.addEventListener('htmx:afterSwap', function(event) {
     const username = localStorage.getItem('username');
     if (username) {
-        initializeDashboard(username);
+        // The dashboard content has just been loaded into the DOM.
+        // Now it's safe to initialize the components inside it.
+        initializeDashboardComponents(username);
     }
 });

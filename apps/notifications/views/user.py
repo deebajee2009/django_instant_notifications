@@ -15,57 +15,45 @@ from apps.notifications.services import get_updated_unread_count
 
 def index_view(request):
     """
-    Renders the main page which includes the login modal.
+    Renders the main page shell. JavaScript will handle showing the
+    login modal or loading the dashboard.
     """
     return render(request, 'dashboard.html')
 
-
 def dashboard_view(request, username):
     """
-    Handles GET for initial dashboard load and POST for date filtering.
+    Handles GET for loading the dashboard content and POST for date filtering.
+    This view now returns a partial HTML fragment, not a full page.
     """
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        # Create user on first login for this demo
-        user = User.objects.create_user(username=username)
-
-    # Try to get unread count from cache first
-    unread_count = cache.get(f"unread_count:{username}")
-    if unread_count is None:
-        unread_count = get_updated_unread_count(user)
+    # Invalidate the cache by recalculating on every load for simplicity,
+    # or use a more sophisticated caching strategy.
+    unread_count = get_updated_unread_count(username)
 
     if request.method == "POST":
-        # Handle HTMX date filtering
+        # Handle HTMX date filtering (this logic remains the same)
         start_date_str = request.POST.get("start_date")
         end_date_str = request.POST.get("end_date")
-
         try:
-            # Convert Jalali string to Gregorian datetime
             start_date = jdatetime.datetime.strptime(start_date_str, '%Y/%m/%d').togregorian()
             end_date = jdatetime.datetime.strptime(end_date_str, '%Y/%m/%d').togregorian()
-            # To include the entire end day
             end_date = end_date.replace(hour=23, minute=59, second=59)
-
             messages = Message.objects.filter(
-                receiver=user,
+                receiver_username=username,
                 created_at__range=[start_date, end_date]
             ).order_by('-created_at')
         except (ValueError, TypeError):
-            # If dates are invalid, return an empty list
             messages = []
-
-        # Return only the list part for HTMX to swap
         return render(request, 'partials/message_list.html', {'messages': messages, 'username': username})
 
-    # Handle GET request for initial page load
-    all_messages = Message.objects.filter(receiver=user).order_by('-created_at')
+    # Handle GET request for loading the main dashboard content
+    all_messages = Message.objects.filter(receiver_username=username).order_by('-created_at')
     context = {
         'messages': all_messages,
         'unread_notif_counts': unread_count,
         'username': username,
     }
-    return render(request, 'dashboard.html', context)
+    # IMPORTANT: Render the partial content, not the full dashboard.html
+    return render(request, 'partials/dashboard_content.html', context)
 
 
 def message_detail_view(request, message_id):

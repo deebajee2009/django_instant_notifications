@@ -1,0 +1,46 @@
+{% load jalali_tags %}
+
+<div class="d-flex">
+    {% include 'partials/sidebar.html' %}
+
+    <div class="main-content flex-grow-1">
+        {% include 'partials/navbar.html' %}
+
+        <main class="container-fluid p-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">جستجو در بازه زمانی</h5>
+                    <form id="date-filter-form"
+                          hx-post="{% url 'core:dashboard' username=username %}"
+                          hx-target="#messages-box"
+                          hx-swap="innerHTML"
+                          class="row g-3 align-items-end">
+                        {% csrf_token %}
+                        <div class="col-md-4">
+                            <label for="id_start_date" class="form-label">از تاریخ</label>
+                            <input type="text" name="start_date" data-jdp class="form-control" placeholder="YYYY/MM/DD" id="id_start_date" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="id_end_date" class="form-label">تا تاریخ</label>
+                            <input type="text" name="end_date" data-jdp class="form-control" placeholder="YYYY/MM/DD" id="id_end_date" required>
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-primary">فیلتر کن</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    صندوق ورودی پیام‌ها
+                </div>
+                <div id="messages-box">
+                    {% include 'partials/message_list.html' %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div id="websocket-handler" ws-connect="/ws/notifications/{{ username }}/"></div>
