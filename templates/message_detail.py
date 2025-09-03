@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body p-4">
                     <a href="#"
-                       hx-get="{% url 'app.notifications:dashboard' username=username %}"
+                       hx-get="{% url 'apps.notifications:dashboard' username=username %}"
                        hx-target="body"
                        hx-push-url="true"
                        class="btn btn-outline-secondary mb-4">

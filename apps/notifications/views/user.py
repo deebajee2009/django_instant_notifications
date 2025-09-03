@@ -69,12 +69,12 @@ def message_detail_view(request, message_id):
     if not message.is_read:
         message.is_read = True
         message.save()
-        # Invalidate cache by re-calculating
+
         get_updated_unread_count(user)
 
     context = {
         'message': message,
-        'username': user.username
+        'username': user
     }
     return render(request, 'message_detail.html', context)
 
