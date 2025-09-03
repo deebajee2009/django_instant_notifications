@@ -96,12 +96,13 @@ def send_message_view(request):
             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
 
         for receiver in receivers:
-            send_notification_task.delay(
+            task_result = send_notification_task.delay(
                 receiver=receiver,
                 sender=sender,
                 title=title,
                 text=text
             )
+            print(task_result)
 
         return JsonResponse({'status': 'success', 'message': f'Messages queued for delivery to {len(receivers)} users.'})
 

@@ -1,10 +1,10 @@
-from celery import shared_task
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.core.cache import cache
+from apps.notifications.models import Message
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-
+from celery import shared_task
 
 
 @shared_task
