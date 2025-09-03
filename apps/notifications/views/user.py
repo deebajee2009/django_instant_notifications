@@ -46,7 +46,7 @@ def dashboard_view(request, username):
         return render(request, 'partials/message_list.html', {'messages': messages, 'username': username})
 
     # Handle GET request for loading the main dashboard content
-    all_messages = Message.objects.filter(receiver_username=username).order_by('-created_at')
+    all_messages = Message.objects.filter(receiver=username).order_by('-created_at')
     context = {
         'messages': all_messages,
         'unread_notif_counts': unread_count,
