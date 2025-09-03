@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title">جستجو در بازه زمانی</h5>
                     <form id="date-filter-form"
-                          hx-post="{% url 'core:dashboard' username=username %}"
+                          hx-post="{% url 'apps.notifications:dashboard' username=username %}"
                           hx-target="#messages-box"
                           hx-swap="innerHTML"
                           class="row g-3 align-items-end">
