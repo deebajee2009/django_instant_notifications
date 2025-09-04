@@ -25,5 +25,5 @@ def to_jalali(gregorian_date):
     local_time = gregorian_date.astimezone(tehran_tz)
 
     jd = jdatetime.datetime.fromgregorian(datetime=local_time)
-    formatted_date = jd.strftime(%H:%M" "%Y/%m/%d)
+    formatted_date = jd.strftime("%H:%M %Y/%m/%d")
     return to_farsi_nums(formatted_date)
