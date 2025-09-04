@@ -40,7 +40,7 @@ function loadDashboard(username) {
         // Set HTMX attributes for the GET request
         dashboardWrapper.setAttribute('hx-get', `/dashboard/${username}/`);
         dashboardWrapper.setAttribute('hx-trigger', 'load'); // Trigger immediately
-        dashboardWrapper.setAttribute('hx-swap', 'outerHTML');
+        dashboardWrapper.setAttribute('hx-swap', 'innerHTML');
         // Process the element to make HTMX aware of the new attributes
         htmx.process(dashboardWrapper);
     }
