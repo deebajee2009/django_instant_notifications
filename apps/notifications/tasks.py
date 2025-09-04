@@ -52,6 +52,8 @@ def send_notification_task(receiver, sender, title, text):
 
     # Prepend the new message to the list container
     message_list_html = f'<div id="messages-box" hx-swap-oob="afterbegin">{new_message_html}</div>'
+
+    # Remove the initial no message to show in farsi text in dashboard
     no_message = f'<p id="no-message-placeholder" hx-swap-oob="outerHTML"></p>'
 
     # 4. Get the channel layer and send the combined HTML
