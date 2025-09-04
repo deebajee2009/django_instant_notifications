@@ -8,11 +8,23 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from celery import shared_task
 
+# To be implemented later
+# @shared_task
+# def send_message_detail(reciever, message_id):
+#     """
+#     Celery task to Send notification message detail to the user via htmx.
+#     """
+#
+# @shared_task
+# def send_dashboard_content(reciever):
+#     """
+#     Celery task to send main dashboard content to the user via htmx.
+#     """
 
 @shared_task
 def send_notification_task(receiver, sender, title, text):
     """
-    Celery task to create a message, cache the new unread count,
+    Celery task to create a message
     and push a notification to the user via WebSocket.
     """
 
