@@ -52,7 +52,7 @@ def send_notification_task(receiver, sender, title, text):
 
     # Prepend the new message to the list container
     message_list_html = f'<div id="messages-box" hx-swap-oob="afterbegin">{new_message_html}</div>'
-    no_message = f'<p class="text-center text-muted p-4 no-message" hx-swap-oob="innerHTML"></p>'
+    no_message = f'<p class="text-center text-muted p-4 no-message" hx-swap-oob="outerHTML"></p>'
     # 4. Get the channel layer and send the combined HTML
     channel_layer = get_channel_layer()
     group_name = f"notifications_{receiver}"
