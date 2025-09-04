@@ -68,7 +68,7 @@ body {
         transform: translateX(0); /* Always visible on desktop */
     }
     .main-content {
-        margin-right: 250px; /* Make space for the sidebar */
+        margin-right: 0px; /* Make space for the sidebar */
     }
     /* Hide the mobile toggler and overlay on desktop */
     .navbar-toggler, .sidebar-overlay {
