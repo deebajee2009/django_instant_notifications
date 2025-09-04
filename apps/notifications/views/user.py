@@ -38,7 +38,7 @@ def dashboard_view(request, username):
             end_date = jdatetime.datetime.strptime(end_date_str, '%Y/%m/%d').togregorian()
             end_date = end_date.replace(hour=23, minute=59, second=59)
             messages = Message.objects.filter(
-                receiver_username=username,
+                receiver=username,
                 created_at__range=[start_date, end_date]
             ).order_by('-created_at')
         except (ValueError, TypeError):
