@@ -55,3 +55,19 @@
         // theme: 'dark'
     });
 </script>
+<script defer>
+    // Wait for the entire page to be loaded before running the script
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+        // Find your form by its ID
+        const dateFilterForm = document.getElementById('date-filter-form');
+
+        // Listen for the 'htmx:afterSwap' event on the form
+        dateFilterForm.addEventListener('htmx:afterSwap', function(evt) {
+            // Use the built-in reset() method to clear all form fields
+            console.log('HTMX request complete. Resetting form.');
+            this.reset();
+        });
+
+    });
+</script>

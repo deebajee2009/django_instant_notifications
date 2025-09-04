@@ -70,11 +70,12 @@ def message_detail_view(request, message_id):
         message.is_read = True
         message.save()
 
-        get_updated_unread_count(user)
+    unread_notif_counts = get_updated_unread_count(user)
 
     context = {
         'message': message,
-        'username': user
+        'username': user,
+        'unread_notif_counts': unread_notif_counts
     }
     return render(request, 'message_detail.html', context)
 
