@@ -1,0 +1,18 @@
+{% load static %}
+{% load jalali_tags %}
+
+<a href="{% url 'apps.notifications:message_detail' message_id=message.id %}" class="message-row-link">
+    <div class="message-row"
+         style="background-color: {% if message.is_read %}#cfcfcf{% else %}#ffffff{% endif %};">
+
+        <div class="message-title">
+            {{ message.title }}
+        </div>
+        <div class="message-sender px-3">
+            {{ message.sender }}
+        </div>
+        <div class="message-meta">
+            {{ message.created_at|to_jalali }}
+        </div>
+    </div>
+</a>

@@ -1,0 +1,19 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: unless-stopped
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

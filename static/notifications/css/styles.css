@@ -1,0 +1,139 @@
+/* --- Font Definition (No Changes) --- */
+@font-face {
+    font-family: "IRANYekan";
+    src: url("https://db.onlinewebfonts.com/t/235b71a9b409e684e865eb4a996e925e.eot");
+    src: url("https://db.onlinewebfonts.com/t/235b71a9b409e684e865eb4a996e925e.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/235b71a9b409e684e865eb4a996e925e.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/235b71a9b409e684e865eb4a996e925e.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/235b71a9b409e684e865eb4a996e925e.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/235b71a9b409e684e865eb4a996e925e.svg#IRANYekan")format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'IRANYekan', 'Vazir', sans-serif !important;
+    direction: rtl;
+    text-align: right;
+    background-color: #f8f9fa; /* A slightly softer background */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+/* --- Responsive Sidebar --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+    padding: 1rem;
+    background-color: #e0fbfc;
+    color: #29323d;
+    z-index: 1050; /* Higher than navbar */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(250px); /* Hidden off-screen to the right by default */
+}
+
+.sidebar.is-visible {
+    transform: translateX(0); /* Slides into view */
+}
+
+/* --- Mobile Overlay --- */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040; /* Below sidebar, above content */
+    display: none; /* Hidden by default */
+}
+
+.sidebar-overlay.is-visible {
+    display: block;
+}
+
+
+/* --- Main Content Area --- */
+.main-content {
+    width: 100%;
+    transition: margin-right 0.3s ease-in-out;
+}
+
+/* --- Responsive Layout Breakpoint (for tablets and desktops) --- */
+@media (min-width: 992px) {
+    .sidebar {
+        transform: translateX(0); /* Always visible on desktop */
+    }
+    .main-content {
+        margin-right: 250px; /* Make space for the sidebar */
+    }
+    /* Hide the mobile toggler and overlay on desktop */
+    .navbar-toggler, .sidebar-overlay {
+        display: none !important;
+    }
+}
+
+
+/* --- Custom Navbar --- */
+.app-navbar {
+    background-color: #03045e;
+}
+
+.app-navbar .navbar-text,
+.app-navbar .navbar-toggler-icon {
+    color: #ffffff;
+}
+
+.app-navbar .navbar-text strong {
+    color: #ade8f4; /* A lighter accent color for the username */
+}
+.app-navbar .bi-bell-fill{
+    color: #ffffff !important;
+}
+
+
+/* --- Message Row Styling --- */
+.message-row-link {
+    text-decoration: none;
+    color: inherit; /* Inherits text color */
+    display: block; /* Makes the entire area clickable */
+}
+
+.message-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.message-row:hover {
+    background-color: #e0e0e0 !important; /* Use !important to override inline style on hover */
+}
+
+.message-meta {
+    min-width: 180px;
+    text-align: left;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.message-title {
+    flex-grow: 1;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+/* Other styles */
+#loginModal .modal-content {
+    border-radius: 0.5rem;
+}
+
+.card{
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
