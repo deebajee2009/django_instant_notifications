@@ -28,7 +28,7 @@ body {
     bottom: 0;
     width: 250px;
     padding: 1rem;
-    background-color: #caf0f8;
+    background-color: #e0fbfc;
     color: #29323d;
     z-index: 1050; /* Higher than navbar */
     transition: transform 0.3s ease-in-out;
