@@ -6,14 +6,10 @@
 {% block content %}
     <div class="d-flex">
         {% include 'partials/sidebar.html' %}
-        <div class="main-content flex-grow-1">
-            {% include 'partials/navbar.html' %}
-
-            <main class="container-fluid p-4 dashboard-wrapper">
-            </main>
 
 
-        {% comment %}
+
+
         <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
         <div class="main-content">
@@ -22,7 +18,7 @@
             <div id="dashboard-wrapper">
                 </div>
         </div>
-        {% endcomment %}
+      
     </div>
 
     {% include 'partials/login_modal.html' %}
