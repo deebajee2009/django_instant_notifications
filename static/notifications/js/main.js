@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * @param {string} username - The user's username.
  */
 function loadDashboard(username) {
-    const dashboardWrapper = document.getElementById('dashboard-wrapper');
+    const dashboardWrapper = document.getElementById('main-content');
     if (dashboardWrapper) {
         // Set HTMX attributes for the GET request
         dashboardWrapper.setAttribute('hx-get', `/dashboard/${username}/`);
