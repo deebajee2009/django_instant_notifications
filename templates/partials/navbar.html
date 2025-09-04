@@ -6,9 +6,9 @@
 
         <div class="d-flex align-items-center ms-auto ms-lg-0">
             <div class="position-relative">
-                <a href="{% url 'apps.notifications:index'  %}" >
+                
                   <i class="bi bi-bell-fill fs-4"></i>
-                </a>
+
                 <span id="notification-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ unread_notif_counts|default:"0" }}
                 </span>
