@@ -30,7 +30,7 @@ curl -X POST http://127.0.0.1:8000/send/ \
      -H "Content-Type: application/json" \
      -d '{
            "receivers": ["davood"],
-           "sender": "سیستم",
-           "title": "cxcxcپیام جدیدتتت 1",
+           "sender": "ادمین 1",
+           "title": "مرخصی ساعتی1",
            "text": "این یک پیام تستی است"
          }'

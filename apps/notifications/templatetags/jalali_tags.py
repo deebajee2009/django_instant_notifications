@@ -19,5 +19,5 @@ def to_jalali(gregorian_date):
         return ""
 
     jd = jdatetime.datetime.fromgregorian(datetime=gregorian_date)
-    formatted_date = jd.strftime("%Y/%m/%d ساعت %H:%M")
+    formatted_date = jd.strftime("%Y/%m/%d -- %H:%M")
     return to_farsi_nums(formatted_date)
