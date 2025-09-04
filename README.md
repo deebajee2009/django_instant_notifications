@@ -25,12 +25,12 @@ POSTGRES_PORT=5432
 REDIS_HOST=redis        # service name from docker-compose
 REDIS_PORT=6379
 
-
+ #e0fbfc
 curl -X POST http://127.0.0.1:8000/send/ \
      -H "Content-Type: application/json" \
      -d '{
            "receivers": ["davood"],
            "sender": "سیستم",
-           "title": "پیام جدیدتتت 1",
+           "title": "cxcxcپیام جدیدتتت 1",
            "text": "این یک پیام تستی است"
          }'

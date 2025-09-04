@@ -13,12 +13,10 @@
         <main class="container-fluid p-4">
             <div class="card">
                 <div class="card-body p-4">
-                    <a href="#"
-                       hx-get="{% url 'apps.notifications:dashboard' username=username %}"
-                       hx-target="body"
-                       hx-push-url="true"
+                    <a href="{% url 'apps.notifications:dashboard' username=username %}"
+
                        class="btn btn-outline-secondary mb-4">
-                        <i class="bi bi-arrow-right"></i> بازگشت به صندوق ورودی
+                        <i class="bi bi-arrow-right"></i> بازگشت به داشبورد
                     </a>
 
                     <div class="message-detail-header">
