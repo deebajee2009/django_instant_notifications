@@ -1,5 +1,6 @@
 from django import template
 import jdatetime
+import pytz
 
 register = template.Library()
 
@@ -17,7 +18,12 @@ def to_jalali(gregorian_date):
     """Converts a Gregorian datetime object to a formatted Jalali string with Farsi numbers."""
     if not gregorian_date:
         return ""
+    # 1. Define the target timezone
+    tehran_tz = pytz.timezone('Asia/Tehran')
 
-    jd = jdatetime.datetime.fromgregorian(datetime=gregorian_date)
-    formatted_date = jd.strftime("%Y/%m/%d -- %H:%M")
+    # 2. Convert the UTC datetime object to Tehran's local time
+    local_time = gregorian_date.astimezone(tehran_tz)
+
+    jd = jdatetime.datetime.fromgregorian(datetime=local_time)
+    formatted_date = jd.strftime(%H:%M" "%Y/%m/%d)
     return to_farsi_nums(formatted_date)
