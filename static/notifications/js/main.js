@@ -80,3 +80,26 @@ document.body.addEventListener('htmx:afterSwap', function(event) {
         initializeDashboardComponents(username);
     }
 });
+
+function initializeDashboardComponents(username) {
+    // ... (your existing code like jalaliDatepicker.startWatch();)
+
+    // --- ADD THIS NEW CODE FOR THE SIDEBAR ---
+    const sidebar = document.getElementById('app-sidebar');
+    const sidebarToggler = document.getElementById('sidebar-toggler');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    if (sidebar && sidebarToggler && sidebarOverlay) {
+        // Event to open the sidebar
+        sidebarToggler.addEventListener('click', () => {
+            sidebar.classList.add('is-visible');
+            sidebarOverlay.classList.add('is-visible');
+        });
+
+        // Event to close the sidebar by clicking the overlay
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('is-visible');
+            sidebarOverlay.classList.remove('is-visible');
+        });
+    }
+}

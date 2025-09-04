@@ -1,6 +1,8 @@
 # django_instant_notifications
 
-cd myproject/compose
+cd myproject
+chmod -x
+
 docker compose --project-directory . -f compose/docker-compose.yml -f docker/dev/docker-compose.override.yml up -d --build
 
 # .env example
@@ -22,3 +24,13 @@ POSTGRES_PORT=5432
 
 REDIS_HOST=redis        # service name from docker-compose
 REDIS_PORT=6379
+
+
+curl -X POST http://127.0.0.1:8000/send/ \
+     -H "Content-Type: application/json" \
+     -d '{
+           "receivers": ["davood"],
+           "sender": "سیستم",
+           "title": "پیام جدیدتتت 1",
+           "text": "این یک پیام تستی است"
+         }'
